@@ -11,7 +11,7 @@ class CTLSTMCell(nn.Module) :
     """
 
     def __init__(self , input_size , hidden_state): 
-        super(CTLSTMCell , self).__init__() 
+        super().__init__()
         self.input_size = input_size 
         self.hidden_state = hidden_state 
 

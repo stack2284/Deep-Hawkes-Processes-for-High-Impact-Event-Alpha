@@ -37,13 +37,21 @@ class LobsterHawkesDataset(Dataset) :
 
         # LOBSTER: 1(add), 2/3(cancel), 4/5(execute)
         # Our Vocab: 0(Add), 1(Cancel), 2(Execute)
-        def map_event(e_type) : 
-            if e_type == 1 : return 0 
-            if e_type in [2 , 3] : return 1
-            if e_type in [4 , 5]: return 0 
-            return 0
+        def map_event(row) : 
+            e_type = row['Type'] 
+            direction = row['Direction'] 
+
+            if e_type == 1 and direction == 1 : return 0 
+            if e_type == 1 and direction == -1 : return -1 
+
+            if e_type in [2 , 3] : 
+                return 2
+            if e_type in [4 , 5] : 
+                if direction == 1 : return 3 
+                else : return 4 
+            return 2 
         
-        df['MappedType'] = df['Type'].apply(map_event) 
+        df['MappedType'] = df.apply(map_event , axis=1) 
 
         time_deltas = df['TimeDelta'].values.astype(np.float32)
         event_type = df['MappedType'].values.astype(np.int64)

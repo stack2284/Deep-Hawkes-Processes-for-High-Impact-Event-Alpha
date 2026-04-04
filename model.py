@@ -6,7 +6,7 @@ from cell import CTLSTMCell
 
 class NeuralHawkesModel (nn.Module) : 
     def __init__(self, num_event_types , embedding_dim , hidden_dim):
-        super(NeuralHawkesModel , self).__init__()
+        super().__init__()
         self.hidden_dim = hidden_dim 
         self.num_event_types = num_event_types 
 
