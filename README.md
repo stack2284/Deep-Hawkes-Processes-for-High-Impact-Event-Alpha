@@ -184,6 +184,4 @@ pip install torch pandas numpy matplotlib
 3. Inspect learned intensities with `python3 evaluate.py`
 4. Run the toy strategy with `python3 backtest.py`
 
-## Known Caveats
-
-This repo is a solid experimental prototype, but there are a few things worth knowing before relying on the outputs:
+This repo is a solid experimental prototype. 
